@@ -3,14 +3,12 @@ using System.Runtime.Serialization;
 
 namespace Lab1
 {
-    [DataContract]
     public class TemperatureHumiditySensor : Sensor, ITemperature, IHumidity
     {
         private double _temperature = 0;
         private string _degrees = "CELSIUS";
         private int _humidity = 0;
 
-        [DataMember]
         public int Humidity
         {
             get
@@ -20,9 +18,7 @@ namespace Lab1
             }
             private set => _humidity = value;
         }
-
-
-        [DataMember]
+        
         public string Degrees
         {
             get => _degrees;
@@ -36,8 +32,7 @@ namespace Lab1
                 _degrees = value;
             }
         }
-
-        [DataMember]
+        
         public double Temperature
         {
             get

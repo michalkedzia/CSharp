@@ -3,12 +3,10 @@ using System.Runtime.Serialization;
 
 namespace Lab1
 {
-    [DataContract]
     public class PressureSensor : Sensor, IPressure
     {
         private int _pressure;
-
-        [DataMember]
+        
         public int Pressure
         {
             get

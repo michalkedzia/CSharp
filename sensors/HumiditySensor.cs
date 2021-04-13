@@ -4,12 +4,10 @@ using Lab1;
 
 namespace Lab1
 {
-    [DataContract]
     public class HumiditySensor : Sensor, IHumidity
     {
         private int _humidity;
-
-        [DataMember]
+        
         public int Humidity
         {
             get

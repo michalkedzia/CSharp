@@ -3,13 +3,11 @@ using System.Runtime.Serialization;
 
 namespace Lab1
 {
-    [DataContract]
     public class TemperatureSensor : Sensor, ITemperature
     {
         private string _degrees = "CELSIUS";
         private double _temperature = 0;
 
-        [DataMember]
         public string Degrees
         {
             get => _degrees;
@@ -24,7 +22,6 @@ namespace Lab1
             }
         }
 
-        [DataMember]
         public double Temperature
         {
             get
@@ -39,12 +36,12 @@ namespace Lab1
         {
             return base.ToString() + "Temperature: " + Temperature + " " + Degrees;
         }
-        
+
         public void TakeMeasurement()
         {
             var m = new Measurement();
-            m.Measurements.Add("Sensor name:",Name);
-            m.Measurements.Add("Temperature",Temperature + " " + _degrees);
+            m.Measurements.Add("Sensor name:", Name);
+            m.Measurements.Add("Temperature", Temperature + " " + _degrees);
             base.TakeMeasurement(m);
         }
     }

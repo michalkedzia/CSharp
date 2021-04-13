@@ -7,19 +7,16 @@ using Newtonsoft.Json;
 
 namespace Lab1
 {
-    [DataContract]
     public class Sensor
     {
         private string _name;
         private static int _counter = 1;
         
-        [DataMember]
         public string Name
         {
             get => _name;
             set => _name = value.Length > 16 ? _name = value.Substring(0, 16) : _name = value;
         }
-
         public Sensor()
         {
             _name = "Sensor" + _counter;
