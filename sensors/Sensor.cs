@@ -1,5 +1,8 @@
 ﻿using System;
+using System.IO;
+using System.Net.Sockets;
 using System.Runtime.Serialization;
+using Newtonsoft.Json;
 
 
 namespace Lab1
@@ -9,8 +12,7 @@ namespace Lab1
     {
         private string _name;
         private static int _counter = 1;
-        public event EventHandler<Measurement> MeasurementEvent; 
-
+        
         [DataMember]
         public string Name
         {
@@ -29,9 +31,19 @@ namespace Lab1
             return "Sensor name: " + _name + " ";
         }
 
-        protected void TakeMeasurement(Measurement m)
+        protected virtual void TakeMeasurement(Measurement m)
         {
-            MeasurementEvent?.Invoke(this, m);
+            try {
+                TcpClient client = new TcpClient(WeatherStation.WeatherStationIp, WeatherStation.WeatherStationPort);
+                StreamWriter writer = new StreamWriter(client.GetStream());
+                string json = JsonConvert.SerializeObject(m);
+                writer.WriteLine(json);
+                writer.Flush();
+                writer.Close();
+                client.Close();
+            } catch(Exception e){
+                Console.WriteLine(e);
+            }
         }
     }
 }

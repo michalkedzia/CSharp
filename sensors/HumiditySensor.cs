@@ -28,6 +28,7 @@ namespace Lab1
         public void TakeMeasurement()
         {
             var m = new Measurement();
+            m.Measurements.Add("Sensor name:",Name);
             m.Measurements.Add("Humidity",Humidity + "%");
             base.TakeMeasurement(m);
         }
